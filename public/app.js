@@ -14,17 +14,18 @@ angular.module('biBuilder', [])
 		return new Array(num);
 	}
 
+	//Buildings Prototype
 	function Unit(){
 		this.name = '';
 		this.id = -1;
-		this.color = "green";
+		this.color = "#FFF";
 		this.height = 2;
 		this.width = 2;
 	}
 
 	$scope.units = [];
 
-//fake data
+	//fake data
 	var unit = new Unit();
 	unit.name = 'Zone R';
 	unit.id = 1;
@@ -42,28 +43,18 @@ angular.module('biBuilder', [])
 	unit.width = 2;
 
 	$scope.units.push( unit  );
-
 	//fake data
-
-	console.log($scope.units);
-
-	$scope.test = 'Hello world!dds dsd';
-
 
 }])
 .directive('draggable', function($document) {
 return function(scope, element, attr) {
-	console.log(scope.units);
 
-
+	//start Values - used for relative mvmt
 	var startX = 0, startY = 0, x = 0, y = 0;
 
-
-
+	//base Values - used to replace elmt on deletion
 	var baseY = jQuery(element).offset().top;
 	var baseX = jQuery(element).offset().left;
-
-	//console.log (jQuery(element).offset().top);
 
 	element.css({
 		position: 'relative',
@@ -74,6 +65,7 @@ return function(scope, element, attr) {
 		width: scope.gridSizeX + 'px',
 		height: scope.gridSizeX + 'px'
 	});
+
 	element.on('mousedown', function(event) {
 		// Prevent default dragging of selected content
 		event.preventDefault();
@@ -91,12 +83,10 @@ return function(scope, element, attr) {
 		var refY = jQuery('#grid').offset().top;
 		var refX = jQuery('#grid').offset().left;
 
-
 		console.log ('refer ' + refX + ' / ' + refY);
-
 		console.log ('befor ' + x + ' / ' + y);
 
-		//On gère le snap
+		//Snapping elmt to the grid
 		if (x < scope.totalX && y < scope.totalY) {
 			y = y - ( y % scope.gridSizeY );
 			x = x - ( x % scope.gridSizeX );
@@ -123,16 +113,14 @@ return function(scope, element, attr) {
 				left:  baseX + 'px'
 			});
 
-
-			//reset la position de l'unit;
-
+			//reset elmt position if outside the grid;
 			startX = baseX;
 			startY = baseY;
-
 
 			x = baseX;
 			y = baseY;
 		}
+		
 		$document.off('mousemove', mousemove);
 		$document.off('mouseup', mouseup);
 	}
