@@ -1,0 +1,28 @@
+<html>
+<head>
+	<title>SC BI Builder</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>
+	<script src="app.js"></script>
+	<link rel="stylesheet" href="app.css" type="text/css" />
+
+</head>
+<body ng-app="biBuilder" ng-controller="MainCtrl">
+
+	<div id="grid">
+		<div class="grid row" ng-repeat="col in getNumber(gridY) track by $index">
+			<div class="grid col"  ng-repeat="row in getNumber(gridX) track by $index">
+				{{$parent.$index}}x{{$index}}
+			</div>
+		</div>
+	</div>
+
+	<div id="drag">
+
+		<span draggable>
+			C
+		</span>
+	</div>
+
+</body>
+</html>

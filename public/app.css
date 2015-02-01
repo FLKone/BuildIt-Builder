@@ -1,0 +1,46 @@
+*, *:before, *:after {
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+}
+
+body {
+	margin:0;
+	padding:0;
+}
+
+#grid {
+	float:left;
+	background:lightpink;
+	width:100%;
+}
+
+#drag {
+	float:right;
+	width:100%;
+	background:lightgreen;
+}
+
+.grid {
+	float:left;
+}
+.col {
+	width:25px;
+	height:25px;
+	border:1px solid lightgrey;
+	padding:5px;
+	background:white;
+	font-size:10px;
+}
+
+.row {
+	clear:both;
+}
+
+
+.unit {
+	width:100px;
+	height:100px;
+	float:left;
+	margin:10px;
+}
