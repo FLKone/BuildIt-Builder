@@ -28,7 +28,7 @@
 		<h1>Buildings</h1>
 
 		<ul>
-			<li class="cf" ng-repeat="category in eddb.buildings">
+			<li class="cf" ng-repeat="category in scbi.buildings">
 				<h3 ng-click="shidd(category);">+ {{category.name}}</h3>
 				<ul>
 					<li ng-repeat="(key, building) in category.list" ng-show="category.show">
@@ -45,6 +45,7 @@
 
 	<div class="cleaner"></div>
 
+	<script type="application/javascript" src="scbi.js"></script>
 	<script type="application/javascript" src="app.js"></script>
 </body>
 </html>
