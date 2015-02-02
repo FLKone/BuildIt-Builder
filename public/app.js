@@ -4,8 +4,8 @@ angular.module('biBuilder', [])
 	$scope.gridSizeX = 20;
 	$scope.gridSizeY = 20;
 
-	$scope.gridX = 40;
-	$scope.gridY = 40;
+	$scope.gridX = 50;
+	$scope.gridY = 50;
 
 	$scope.totalX = $scope.gridSizeX * ($scope.gridX);
 	$scope.totalY = $scope.gridSizeY * ($scope.gridY);
