@@ -6,41 +6,63 @@ box-sizing: border-box;
 
 body {
 	margin:0;
-	padding:0;
+	padding:20px;
+}
+
+#content {
+	width:80%;
+	background:white;
+	float:left;
 }
 
 #grid {
 	float:left;
-	background:lightpink;
-	width:100%;
+
 }
 
 #drag {
-	float:right;
-	width:100%;
+	width:20%;
 	background:lightgreen;
+	height:100%;
+	padding:20px;
+	position:fixed;
+	top:0;
+	right:0;
+}
+
+h1 {
+	margin-top:0;
+	margin-bottom:20px;
 }
 
 .grid {
 	float:left;
 }
 .col {
-	width:25px;
-	height:25px;
-	border:1px solid lightgrey;
-	padding:5px;
+	width:20px;
+	height:20px;
+	border:2px solid blue;
 	background:white;
-	font-size:10px;
+	font-size:9px;
 }
 
 .row {
 	clear:both;
 }
 
-
 .unit {
 	width:100px;
 	height:100px;
 	float:left;
-	margin:10px;
+}
+
+.spacer {
+	clear:both;
+	background:yellow;
+	height:25px;
+}
+
+
+.cleaner {
+	clear:both;
 }

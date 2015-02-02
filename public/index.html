@@ -8,21 +8,40 @@
 
 </head>
 <body ng-app="biBuilder" ng-controller="MainCtrl">
-
-	<div id="grid">
-		<div class="grid row" ng-repeat="col in getNumber(gridY) track by $index">
-			<div class="grid col"  ng-repeat="row in getNumber(gridX) track by $index">
-				{{$parent.$index}}x{{$index}}
+	<div id="content">
+		<h1>Map</h1>
+		<div id="grid">
+			<div class="grid row" ng-repeat="col in getNumber(gridY) track by $index">
+				<div class="grid col"  ng-repeat="row in getNumber(gridX) track by $index">
+					{{$parent.$index}}<br/>{{$index}}
+				</div>
 			</div>
+
+			<div class="cleaner"></div>
 		</div>
+		<div class="cleaner"></div>
 	</div>
 
 	<div id="drag">
+		<h1>Buildings</h1>
+		<div class="unit" draggable>
+			R
+		</div>
 
-		<span draggable>
+		<div class="unit" draggable>
 			C
-		</span>
-	</div>
+		</div>
+		<div class="spacer"></div>
 
+		<div class="unit" draggable>
+			I
+		</div>
+
+		<div class="unit" draggable>
+			P
+		</div>
+	</div>
+	
+	<div class="cleaner"></div>
 </body>
 </html>
