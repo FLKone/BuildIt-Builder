@@ -53,6 +53,8 @@ return function(scope, element, attr) {
 	var refX = jQuery('#grid').offset().left;
 	var refY = jQuery('#grid').offset().top;
 
+	console.log ('refX ' + refX + ' refY ' + refY);
+
 	element.css({
 		position: 'relative',
 		border: '1px solid red',
