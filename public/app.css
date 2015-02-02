@@ -7,32 +7,36 @@ box-sizing: border-box;
 body {
 	margin:0;
 	padding:20px;
+	font-family: 'PT Sans', sans-serif;
+	font-weight: normal;
+	min-width:1240px;
+	padding-right:200px;
 }
 
 #content {
-	width:80%;
-	background:white;
-	float:left;
+	background:#fcfcfc;
 }
 
 #grid {
-	float:left;
 
 }
 
 #drag {
-	width:20%;
-	background:lightgreen;
+	width:200px;
+	background:rgba(7, 155, 203, 0.9);
 	height:100%;
 	padding:20px;
 	position:fixed;
 	top:0;
 	right:0;
+	
 }
 
 h1 {
 	margin-top:0;
 	margin-bottom:20px;
+	color: #222222;
+	font-weight: normal;
 }
 
 .grid {
@@ -41,7 +45,7 @@ h1 {
 .col {
 	width:20px;
 	height:20px;
-	border:2px solid blue;
+	border:1px solid lightgrey;
 	background:white;
 	font-size:9px;
 }
@@ -50,10 +54,26 @@ h1 {
 	clear:both;
 }
 
+
+div.row:last-child .col {
+	border-bottom:2px solid lightgrey;
+}
+div.row:first-child .col {
+	border-top:2px solid lightgrey;
+}
+
+.row .col:last-child {
+	border-right:2px solid lightgrey;
+}
+.row .col:first-child {
+	border-left:2px solid lightgrey;
+}
+
 .unit {
 	width:100px;
 	height:100px;
 	float:left;
+	font-size:10px;
 }
 
 .spacer {
