@@ -89,11 +89,11 @@ return function(scope, element, attr) {
 			y = event.pageY;
 			x = event.pageX;
 			//console.log(copie);
-			//console.log ('befor ' + x + ' x ' + y);
+			console.log ('befor ' + x + ' x ' + y);
 
 			var caseX = Math.floor((x - refX) / scope.gridSizeX);
 			var caseY = Math.floor((y - refY) / scope.gridSizeY);
-			//console.log('caseY = ' + caseY + ' X ' + caseX);
+			console.log('caseY = ' + caseY + ' X ' + caseX);
 
 			//Snapping elmt to the grid
 			if (caseY >= 0 && caseX >= 0 && caseY < scope.gridY && caseX < scope.gridX) {
@@ -107,7 +107,7 @@ return function(scope, element, attr) {
 				//console.log('outside the grid');
 			}
 
-			//console.log ('after ' + x + ' / ' + y);
+			console.log ('after ' + x + ' / ' + y);
 			//console.log ('abspo ' + jQuery(element).offset().left + ' / ' + jQuery(element).offset().top);
 
 			copie.css({
