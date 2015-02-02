@@ -26,22 +26,21 @@
 
 	<div id="drag">
 		<h1>Buildings</h1>
-		<div class="unit" draggable>
-			R
-		</div>
 
-		<div class="unit" draggable>
-			C
-		</div>
-		<div class="spacer"></div>
+		<ul>
+			<li class="cf" ng-repeat="category in eddb.buildings">
+				<h3 ng-click="shidd(category);">+ {{category.name}}</h3>
+				<ul>
+					<li ng-repeat="(key, building) in category.list" ng-show="category.show">
+						<div class="unit" draggable style="background-image:url(/ui/buildings/{{ key }}.jpg);">
 
-		<div class="unit" draggable>
-			I
-		</div>
+						</div>
+						<div class="desc">{{ building.name }}</div>
+					</li>
+				</ul>
+			</li>
+		</ul>
 
-		<div class="unit" draggable>
-			P
-		</div>
 	</div>
 
 	<div class="cleaner"></div>

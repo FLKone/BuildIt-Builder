@@ -25,6 +25,122 @@ angular.module('biBuilder', [])
 
 	$scope.units = [];
 
+	$scope.positions = [{ Name: "Quarterback", Code: "QB" },
+						{ Name: "Wide Receiver", Code: "WR" }];
+
+
+	$scope.eddb = {
+		version : 0.1,
+		buildings : {
+			10 : {
+				name : 'Residential Zone',
+				code : 'rz',
+				show : 1,
+				list : {
+					100 : {
+						name:'Residential Zone', x:2, y:2, price:0,
+						population:1836,
+					},
+				},
+			},
+			20 : {
+				name : 'Stores',
+				code : 'sz',
+				show : 1,
+				list : {
+					200 : {
+						name:'Building Supply Store', x:2, y:2, price:100,
+						max:1,
+					},
+					201 : {
+						name:'Hardware Store', x:2, y:2, price:2500,
+						max:1,
+					},
+					202 : {
+						name:'Farmer’s Market', x:2, y:2, price:5000,
+						max:1,
+					},
+					203 : {
+						name:'Furniture Store', x:2, y:2, price:8000,
+						max:1,
+					},
+					204 : {
+						name:'Gardening Supplies', x:2, y:2, price:13000,
+						max:1,
+					},
+					205 : {
+						name:'Donut Shop', x:2, y:2, price:17000,
+						max:1,
+					},
+					206 : {
+						name:'Fashion Store', x:2, y:2, price:22000,
+						max:1,
+					},
+					207 : {
+						name:'Fast Food Restaurant', x:2, y:2, price:25000,
+						max:1,
+					},
+					208 : {
+						name:'Home Appliances', x:2, y:2, price:30000,
+						max:1,
+					},
+				},
+			},
+			30 : {
+				name : 'Factories',
+				code : 'fz',
+				show : 1,
+				max : 10,
+				list : {
+					300 : {
+						name:'High-Tech Factory', x:2, y:2, price:20000,
+						dirtyx:6, dirtyy:6,
+					},
+					301 : {
+						name:'Nano-Tech Factory', x:2, y:2, price:50000,
+						dirtyx:0, dirtyy:0,
+					},
+				},
+			},
+			40 : {
+				name : 'Fire Service',
+				code : 'fsc',
+				show : 1,
+				list : {
+					400 : {
+						name:'Small Fire Station', x:1, y:1, price:6100,
+						zonex:6, zoney:8,
+					},
+					401 : {
+						name:'Basic Fire Station', x:2, y:2, price:11000,
+						zonex:10, zoney:12,
+					},
+					402 : {
+						name:'Deluxe Fire Station', x:4, y:2, price:42100,
+						zonex:22, zoney:22,
+					},
+				},
+			},
+		},
+	};
+
+	$scope.shidd = function(category) {
+		console.log(category);
+		if (category.show) {
+			console.log('show');
+
+			category.show = 0;
+		}
+		else
+		{
+			console.log('hidden');
+			category.show = 1;
+		}
+	}
+
+	console.log($scope.positions);
+	console.log($scope.eddb.buildings);
+
 	//fake data
 	var unit = new Unit();
 	unit.name = 'Zone R';
@@ -54,32 +170,22 @@ return function(scope, element, attr) {
 		var refX = jQuery('#grid').offset().left;
 		var refY = jQuery('#grid').offset().top;
 
-		console.log ('refX ' + refX + ' refY ' + refY);
-
 		element.css({
-			position: 'relative',
 			border: '1px solid red',
-			backgroundColor: 'lightgrey',
-			cursor: 'pointer',
-			display: 'block',
-			width: scope.gridSizeX + 'px',
-			height: scope.gridSizeX + 'px'
+			width: scope.gridSizeX*2 + 'px',
+			height: scope.gridSizeX*2 + 'px',
+			lineHeight: scope.gridSizeX*2 + 'px'
 		});
 
 		element.on('mousedown', function(event) {
 			// Prevent default dragging of selected content
 			event.preventDefault();
 
-			//console.log ('screen ' + event.clientX + ' / ' + event.clientY);
-
 			var copie = $(element).clone();
 
 			copie.css({
 				position: 'absolute',
 				border: '1px solid green',
-				backgroundColor: 'lightgrey',
-				cursor: 'pointer',
-				display: 'block',
 				width: scope.gridSizeX * 2 + 'px',
 				height: scope.gridSizeX * 2 + 'px',
 				left: event.pageX - scope.gridSizeX/2 + 'px',
@@ -91,27 +197,16 @@ return function(scope, element, attr) {
 			function mousemove(event) {
 				y = event.pageY;
 				x = event.pageX;
-				//console.log(copie);
-				console.log ('befor ' + x + ' x ' + y);
 
 				var caseX = Math.floor((x - refX) / scope.gridSizeX);
 				var caseY = Math.floor((y - refY) / scope.gridSizeY);
-				console.log('caseY = ' + caseY + ' X ' + caseX);
+
 
 				//Snapping elmt to the grid
 				if (caseY >= 0 && caseX >= 0 && caseY < scope.gridY && caseX < scope.gridX) {
-					//console.log('inside the grid');
-
-					//console.log("y= " + y + " scope=" + scope.gridSizeY + ' mod=' + ( y % scope.gridSizeY ));
 					y = (caseY * scope.gridSizeY + refY);
 					x = (caseX * scope.gridSizeX + refX);
 				}
-				else {
-					//console.log('outside the grid');
-				}
-
-				console.log ('after ' + x + ' / ' + y);
-				//console.log ('abspo ' + jQuery(element).offset().left + ' / ' + jQuery(element).offset().top);
 
 				copie.css({
 					top: y + 'px',
@@ -120,7 +215,6 @@ return function(scope, element, attr) {
 			}
 
 			function mouseup(event) {
-				//console.log('mouseup');
 
 				$document.off('mousemove', mousemove);
 				$document.off('mouseup', mouseup);
@@ -128,8 +222,6 @@ return function(scope, element, attr) {
 
 			function mousedown(event) {
 				event.preventDefault();
-
-				//console.log('mousedown');
 
 				$document.on('mousemove', mousemove);
 				$document.on('mouseup', mouseup);
