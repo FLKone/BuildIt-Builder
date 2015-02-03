@@ -155,9 +155,9 @@ return function(scope, element, attr) {
 				position: 'absolute',
 				border: '1px solid red',
 				width: scope.gridSizeX * currentUnit.x + 'px',
-				height: scope.gridSizeX * currentUnit.y + 'px',
-				left: event.pageX - scope.gridSizeX/2 + 'px',
-				top: event.pageY - scope.gridSizeY/2 + 'px'
+				height: scope.gridSizeY * currentUnit.y + 'px',
+				left: event.pageX - (scope.gridSizeX * currentUnit.x)/2 + 'px',
+				top: event.pageY - (scope.gridSizeX * currentUnit.y)/2 + 'px'
 			});
 
 			//Put ID : Unit Code : Array Key
@@ -182,6 +182,9 @@ return function(scope, element, attr) {
 
 				y = event.pageY;
 				x = event.pageX;
+
+				y = y - (scope.gridSizeY * currentUnit.y)/2;
+				x = x - (scope.gridSizeX * currentUnit.x)/2;
 
 				var caseX = Math.floor((x - refX) / scope.gridSizeX);
 				var caseY = Math.floor((y - refY) / scope.gridSizeY);
@@ -309,6 +312,11 @@ return function(scope, element, attr) {
 			}
 
 			function mousedown(event) {
+
+				// == Feat Improv : alt+clic = duplicate building
+				//var isCtrl = event.altKey;
+				//console.log(isCtrl);
+
 				$('body,html').addClass('mousemove');
 				copie.addClass('active');
 
