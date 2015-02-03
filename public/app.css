@@ -11,10 +11,11 @@ body {
 	font-weight: normal;
 	min-width:1240px;
 	padding-right:200px;
+	background:#fcfcfc;
+
 }
 
 #content {
-	background:#fcfcfc;
 }
 
 #grid {
@@ -69,14 +70,45 @@ div.row:first-child .col {
 	border-left:2px solid lightgrey;
 }
 
+.col.invalidate {
+	background:red;
+}
+
+.unit.supergreen {
+	border-color:green !important;
+}
+
+.unit.todeletion {
+	border-color:grey !important;
+
+}
+
 .unit {
 	font-size:10px;
-	cursor: pointer;
+	cursor: -moz-grab;
+	cursor: -webkit-grab;
+	cursor: grab;
 	display: block;
 	background-size: contain;
 	background-position: 50% 50%;
 	background-repeat: no-repeat;
 	background-color: white;
+}
+
+.mousemove * {
+	cursor: -moz-grabbing !important;
+	cursor: -webkit-grabbing !important;
+	cursor: grabbing !important;
+}
+
+.todeletion * {
+	cursor: -moz-no-drop !important;
+	cursor: -webkit-no-drop !important;
+	cursor: no-drop !important;
+}
+
+.unit.active {
+	z-index:100;
 }
 
 #drag .unit {
@@ -144,4 +176,11 @@ div.row:first-child .col {
 
 .cf:after {
 	clear: both;
+}
+
+.debug, .debug li {
+	margin:0;
+	padding:0;
+	list-style-type:none;
+	font-size:15px;
 }

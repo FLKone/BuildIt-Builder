@@ -15,7 +15,7 @@
 		<h1>Map</h1>
 		<div id="grid">
 			<div class="grid row" ng-repeat="col in getNumber(gridY) track by $index">
-				<div class="grid col"  ng-repeat="row in getNumber(gridX) track by $index">
+				<div id="grid:{{$index}}:{{$parent.$index}}" class="grid col"  ng-repeat="row in getNumber(gridX) track by $index">
 					<!-- {{$parent.$index}}<br/>{{$index}} -->
 				</div>
 			</div>
@@ -32,7 +32,7 @@
 				<h3 ng-click="shidd(category);">+ {{category.name}}</h3>
 				<ul>
 					<li ng-repeat="(key, building) in category.list" ng-show="category.show">
-						<div class="unit" draggable style="background-image:url(/ui/buildings/{{ key }}.jpg);">
+						<div id="baseunit:{{key}}" class="unit" draggable style="background-image:url(/ui/buildings/{{ key }}.jpg);">
 
 						</div>
 						<div class="desc">{{ building.name }}</div>
@@ -44,6 +44,13 @@
 	</div>
 
 	<div class="cleaner"></div>
+
+	<h4>Debug Live Buildings Array</h4>
+	<ul class="debug">
+		<li ng-repeat="liveB in liveBuildings">{{liveB.code}} - {{liveB.x}}x{{liveB.y}}</li>
+	</ul>
+
+	<div ng-model="liveBuildings"></div>
 
 	<script type="application/javascript" src="scbi.js"></script>
 	<script type="application/javascript" src="app.js"></script>
