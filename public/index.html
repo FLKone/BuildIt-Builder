@@ -14,7 +14,7 @@
 	<div id="content">
 		<h1>Map</h1>
 		<div id="grid">
-			<div class="grid row" ng-repeat="col in getNumber(gridY) track by $index">
+			<div class="grid row" ng-repeat="col in getNumber(gridY) track by $index" ng-cloak>
 				<div id="grid:{{$index}}:{{$parent.$index}}" class="grid col"  ng-repeat="row in getNumber(gridX) track by $index">
 					<!-- {{$parent.$index}}<br/>{{$index}} -->
 				</div>
@@ -28,7 +28,7 @@
 		<h1>Buildings</h1>
 
 		<ul>
-			<li class="cf" ng-repeat="category in scbi.buildings">
+			<li class="cf" ng-repeat="category in scbi.buildings" ng-cloak>
 				<h3 ng-click="shidd(category);">+ {{category.name}}</h3>
 				<ul>
 					<li ng-repeat="(key, building) in category.list" ng-show="category.show">
