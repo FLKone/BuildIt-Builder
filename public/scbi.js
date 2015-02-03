@@ -1,7 +1,7 @@
 var scbi = {
 	version : 0.1,
 	buildings : {
-		10 : {
+		100 : {
 			name : 'Residential Zone',
 			code : 'rz',
 			show : 1,
@@ -12,10 +12,10 @@ var scbi = {
 				},
 			},
 		},
-		20 : {
+		200 : {
 			name : 'Stores',
 			code : 'sz',
-			show : 1,
+			show : 0,
 			list : {
 				200 : {
 					name:'Building Supply Store', x:2, y:2, price:100,
@@ -55,7 +55,7 @@ var scbi = {
 				},
 			},
 		},
-		30 : {
+		300 : {
 			name : 'Factories',
 			code : 'fz',
 			show : 1,
@@ -71,7 +71,7 @@ var scbi = {
 				},
 			},
 		},
-		40 : {
+		400 : {
 			name : 'Fire Service',
 			code : 'fsc',
 			show : 1,
