@@ -34,6 +34,7 @@ angular.module('biBuilder', [])
 
 	//Grid Invalidation
 	$scope.invalidate = function(origin, zone) {
+		//console.log('invalidate at '+ origin.x +'x'+ origin.y +'?....');
 
 		var oriX = origin.x;
 		var oriY = origin.y;
@@ -66,30 +67,30 @@ angular.module('biBuilder', [])
 
 	$scope.isInvalidate = function(coord) {
 		var curElem = $("#grid\\:" + coord.x + "\\:" + coord.y);
-		console.log('checking... x '+coord.x+' y '+coord.y);
+		//console.log('checking... x '+coord.x+' y '+coord.y);
 
 		//check outside grid
 		if (coord.x >= $scope.gridX || coord.y >= $scope.gridY || coord.x < 0 || coord.y < 0) {
-			console.log('....KO');
+			//console.log('....KO');
 			return true;
 		}
 
 		if (curElem.hasClass("invalidate")) {
-			console.log('....KO');
+			//console.log('....KO');
 			return true;
 		}
-		console.log('....OK');
+		//console.log('....OK');
 		return false;
 	}
 
 	$scope.canSnap = function(coord, size) {
-		console.log('canSnap at '+ coord.x +'x'+ coord.y +'?....');
+		//console.log('canSnap at '+ coord.x +'x'+ coord.y +'?....');
 		//var curElem = $("#grid\\:" + coord.x + "\\:" + coord.y);
 		if ($scope.isInvalidate(coord)) {
 			//console.log('!canSnap');
 			//must find closed free spot
 			var turn = 0;
-			console.log('NOP !');
+			//console.log('NOP !');
 
 			return false;
 		}
@@ -106,7 +107,7 @@ angular.module('biBuilder', [])
 
 					if ($scope.isInvalidate({ x: coord.x+ii, y: coord.y+ij }))
 					{
-						console.log('NOP2...');
+						//console.log('NOP2...');
 						return false;
 					}
 
@@ -116,7 +117,7 @@ angular.module('biBuilder', [])
 				ii++;
 				ij=0;
 			}
-			console.log('YES');
+			//console.log('YES');
 
 			return true;
 		}
@@ -175,6 +176,7 @@ return function(scope, element, attr) {
 			var aID = gID.split(":")[2]; //Live array Key ID
 
 			function mousemove(event) {
+
 				$('body,html').addClass('mousemove');
 				copie.addClass('active');
 
@@ -248,13 +250,16 @@ return function(scope, element, attr) {
 			}
 
 			function mouseup(event) {
+				$document.off('mousemove', mousemove);
+				$document.off('mouseup', mouseup);
+
+				y = $( copie ).css('top').replace(/[^-\d\.]/g, '');;//event.pageY;
+				x = $( copie ).css('left').replace(/[^-\d\.]/g, '');;//event.pageX;
+
 				$('body,html').removeClass('mousemove');
 				$('body,html').removeClass('todeletion');
 
 				copie.removeClass('active');
-
-				y = event.pageY;
-				x = event.pageX;
 
 				var caseX = Math.floor((x - refX) / scope.gridSizeX);
 				var caseY = Math.floor((y - refY) / scope.gridSizeY);
@@ -274,7 +279,7 @@ return function(scope, element, attr) {
 				}
 				else if (caseY >= 0 && caseX >= 0 && caseY < scope.gridY && caseX < scope.gridX
 					&& scope.canSnap({ x : scope.liveBuildings[aID].x, y : scope.liveBuildings[aID].y }, { x : currentUnit.x, y : currentUnit.y })) {
-					console.log('ooiops');
+
 					//last pos OK
 					y = (scope.liveBuildings[aID].y * scope.gridSizeY + refY);
 					x = (scope.liveBuildings[aID].x * scope.gridSizeX + refX);
@@ -300,8 +305,7 @@ return function(scope, element, attr) {
 
 
 
-				$document.off('mousemove', mousemove);
-				$document.off('mouseup', mouseup);
+
 			}
 
 			function mousedown(event) {
