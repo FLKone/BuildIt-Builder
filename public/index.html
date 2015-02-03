@@ -47,7 +47,7 @@
 
 	<h4>Debug Live Buildings Array</h4>
 	<ul class="debug">
-		<li ng-repeat="liveB in liveBuildings">{{liveB.code}} - {{liveB.x}}x{{liveB.y}}</li>
+		<li ng-repeat="liveB in liveBuildings" ng-cloak>{{liveB.code}} - {{liveB.x}}x{{liveB.y}}</li>
 	</ul>
 
 	<div ng-model="liveBuildings"></div>
