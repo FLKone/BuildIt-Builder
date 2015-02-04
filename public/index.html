@@ -13,14 +13,24 @@
 <body ng-app="biBuilder" ng-controller="MainCtrl">
 	<div id="content">
 		<h1>Map</h1>
-		<div id="grid">
-			<div class="grid row" ng-repeat="col in getNumber(gridY) track by $index" ng-cloak>
-				<div id="grid:{{$index}}:{{$parent.$index}}" class="grid col"  ng-repeat="row in getNumber(gridX) track by $index">
-					<!-- {{$parent.$index}}<br/>{{$index}} -->
+		<div id="realcontent">
+			<div id="grid">
+				<div class="grid row row{{$index}}" ng-repeat="col in getNumber(gridY) track by $index" ng-cloak>
+					<div id="grid:{{$index}}:{{$parent.$index}}" class="grid col"  ng-repeat="row in getNumber(gridX) track by $index">
+						<!-- {{$parent.$index}}<br/>{{$index}} -->
+					</div>
 				</div>
 			</div>
 
+			<div id="datagrid">
+				<div class="grid row row{{$index}}" ng-repeat="col in getNumber(gridY) track by $index" ng-cloak>
+					<div id="data:{{$index}}:{{$parent.$index}}" class="grid col"  ng-repeat="row in getNumber(gridX) track by $index">
+						<!-- {{$parent.$index}}<br/>{{$index}} -->
+					</div>
+				</div>
+			</div>
 		</div>
+
 		<div class="cleaner"></div>
 	</div>
 

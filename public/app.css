@@ -4,6 +4,7 @@
 box-sizing: border-box;
 }
 
+/* overall body */
 body {
 	margin:0;
 	padding:20px;
@@ -15,11 +16,32 @@ body {
 
 }
 
-#content {
+h1 {
+	margin-top:0;
+	margin-bottom:20px;
+	color: #222222;
+	font-weight: normal;
+}
+
+
+/* main ID */
+
+#content, #realcontent {
+	position:relative;
 }
 
 #grid {
+	position:absolute;
+	top:0;
+	left:0;
+}
 
+#datagrid {
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:10;
+	opacity:0.5;
 }
 
 #drag {
@@ -33,13 +55,9 @@ body {
 
 }
 
-h1 {
-	margin-top:0;
-	margin-bottom:20px;
-	color: #222222;
-	font-weight: normal;
-}
-
+/*	=====
+	GRID
+	===== */
 .grid {
 	float:left;
 }
@@ -74,6 +92,37 @@ div.row:first-child .col {
 	background:red;
 }
 
+#datagrid .col {
+	border:none;
+}
+/* polution */
+#datagrid .col.dirty, #datagrid .row1 .col {
+	background:brown;
+}
+
+/* services */
+#datagrid .col.fire, #datagrid .row2 .col {
+	background:red;
+}
+#datagrid .col.police, #datagrid .row3 .col {
+	background:blue;
+}
+#datagrid .col.police, #datagrid .row4 .col {
+	background:green;
+}
+
+/*basic coverage */
+#datagrid .col.aura, #datagrid .row5 .col {
+	background:lightgreen;
+}
+
+.mousemove #datagrid{
+	z-index:50;
+}
+
+/*	=====
+	UNITS
+	===== */
 .unit.supergreen {
 	border-color:green !important;
 }
@@ -93,6 +142,7 @@ div.row:first-child .col {
 	background-position: 50% 50%;
 	background-repeat: no-repeat;
 	background-color: white;
+	z-index:20;
 }
 
 .mousemove * {
@@ -121,7 +171,9 @@ div.row:first-child .col {
 
 }
 
-
+/*	=====
+	UNIT LIST
+	===== */
 #drag ul {
 	margin :0;
 	padding:0;
@@ -164,6 +216,11 @@ div.row:first-child .col {
 
 
 
+
+
+/*	=====
+	UTILITIES
+	===== */
 .cleaner {
 	clear:both;
 }
