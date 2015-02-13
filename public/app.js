@@ -125,7 +125,7 @@ angular.module('biBuilder', [])
 
 	}
 }])
-.directive('draggable', function($document) {
+.directive('menudraggable', function($document) {
 return function(scope, element, attr) {
 
 	angular.element(document).ready(function() {
